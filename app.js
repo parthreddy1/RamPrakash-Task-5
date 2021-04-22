@@ -9,9 +9,10 @@ const listRoutes = require("./Routes/lists");
 //Middlewares
 app.use(bodyParser.json())
 app.use(cors())
-app.use("/lists", listRoutes)
 
 //Routes
+
+app.use("/lists", listRoutes)
 app.get('/', (req, res) => {
 
     res.send("SERVER IS UP")
