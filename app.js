@@ -8,6 +8,7 @@ const listRoutes = require("./Routes/lists");
 
 //Middlewares
 app.use(bodyParser.json())
+app.use(cors())
 app.use("/lists", listRoutes)
 
 //Routes
