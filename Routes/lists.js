@@ -156,13 +156,15 @@ router.delete("/:listId", async (req, res) => {
 router.delete("/:listId/tasks/:taskId", async (req, res) => {
     try {
         const listData = await Lists.findById(req.params.listId)
-
         let taskData = listData.tasks.filter((data) => {
             return data._id == req.params.taskId
         });
 
         const id = taskData[0]._id;
-        const deleteData = await Lists.remove({ "tasks._id": id });
+        const deleteData = await Lists.updateOne({ _id: req.params.listId },
+            { $pull: { tasks: { _id: id } } },
+            { safe: true }
+        );
         res.json({ deleteData, message: "Deleted Successfully" })
     } catch (error) {
         console.log(error)

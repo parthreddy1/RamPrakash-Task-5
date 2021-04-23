@@ -14,7 +14,6 @@ app.use(cors())
 
 app.use("/lists", listRoutes)
 app.get('/', (req, res) => {
-
     res.send("SERVER IS UP 😃")
 })
 
